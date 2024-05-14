@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+  </head>
+  <body>
+    <script>
+      let statusBoolean = "${task.status}";
+    </script>
+    <div class="container">
+      <h1>To Do List</h1>
+      <div class="addButton">
+        <a th:href="@{/addtask}"><button>Add Task</button></a>
+      </div>
+      <table class="toDoList">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="task:${tasks}">
+            <div class="taskItems" th:if="${task.status}">
+              <td
+                th:text="${task.description}"
+                style="
+                  text-decoration: line-through;
+                  text-decoration-color: red;
+                "
+              ></td>
+              <td
+                th:text="${task.category}"
+                style="
+                  text-decoration: line-through;
+                  text-decoration-color: red;
+                "
+              ></td>
+              <td
+                th:text="${task.priority}"
+                style="
+                  text-decoration: line-through;
+                  text-decoration-color: red;
+                "
+              ></td>
+              <td
+                th:text="${task.dueDate}"
+                style="
+                  text-decoration: line-through;
+                  text-decoration-color: red;
+                "
+              ></td>
+            </div>
+            <div class="taskItems" th:unless="${task.status}">
+              <td
+                th:text="${task.description}"
+                style="text-decoration: none"
+              ></td>
+              <td th:text="${task.category}" style="text-decoration: none"></td>
+              <td th:text="${task.priority}" style="text-decoration: none"></td>
+              <td th:text="${task.dueDate}" style="text-decoration: none"></td>
+            </div>
+            <td>
+              <div th:if="${task.status}">
+                <a th:href="@{status/{id}(id=${task.taskID})}">
+                  <button id="statusButton">Mark Incomplete</button></a
+                >
+              </div>
+              <div th:unless="${task.status}">
+                <a th:href="@{status/{id}(id=${task.taskID})}">
+                  <button id="statusButton">Mark Complete</button></a
+                >
+              </div>
+              <a th:href="@{{id}(id=${task.taskID})}" class="detailsButton">
+                <button>Details</button></a
+              >
+              <a th:href="@{edit/{id}(id=${task.taskID})}" class="editButton">
+                <button>Edit</button></a
+              >
+              <a
+                th:href="@{delete/{id}(id=${task.taskID})}"
+                class="deleteButton"
+              >
+                <button>Delete</button></a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script type="text/javascript" th:src="@{/js/index.js}"></script>
+  <footer>
+    <h5>&copy; 2024 Travis Ruopp </h5>
+</footer>
+</html>

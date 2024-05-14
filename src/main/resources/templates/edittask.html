@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/newtask.css}" >
+</head>
+<body>
+        <h1>Edit Task</h1>
+        <div class = "detailsBlock">
+        <form action="#" th:action="@{/save}" th:object = "${task}" method="post">
+            <input type="hidden" th:field = "*{taskID}">
+            <label>Description</label>
+            <input type="text" th:field="*{description}" placeholder="Task Description"/> <br>
+            <label> Category </label>
+            <select th:field="*{category}">
+                <option th:each="p : ${listCategory}" th:value="${p}" th:text="${p}" />
+            </select><br>
+            <label> Status </label>
+            <input type="checkbox" th:field="*{status}"><br>
+            <label> Priority </label>
+            <select th:field="*{priority}">
+                <option th:each="p : ${listPriority}" th:value="${p}" th:text="${p}" />
+            </select><br>
+            <label> Due Date</label>
+            <input type="text" th:field="*{dueDate}" placeholder="Task Due Date"/> <br>
+            
+            <button type="submit" class="saveButton"> Update Task </button>
+            <a th:href="@{/}" class="homeButton"><button>Cancel</button></a>
+        </form>
+    </div>    
+</body>
+<footer>
+    <h5>&copy; 2024 Travis Ruopp </h5>
+</footer>
+</html>

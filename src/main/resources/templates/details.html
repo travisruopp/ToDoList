@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Detail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/details.css}">
+</head>
+<body>
+    <h1> Details</h1>
+    <div class = "detailsBlock">
+    <label class="detailsLabel"> Description </label>
+    <label th:text="${task.description}"></label><br>
+    <label class="detailsLabel"> Category </label>
+    <label th:text="${task.category}"></label><br>
+    <label class="detailsLabel"> Priority </label>
+    <label th:text="${task.priority}"></label><br>
+    <label class="detailsLabel"> Due Date </label>
+    <label th:text="${task.dueDate}"></label><br>
+    </div>
+    <a th:href="@{/}" class="homeButton"><button>Home</button></a>
+    <a th:href="@{edit/{id}(id=${task.taskID})}" class="editButton"> <button> Edit </button></a>
+    <a th:href="@{delete/{id}(id=${task.taskID})}" class="deleteButton"> <button> Delete </button></a></td>
+
+</body>
+<footer>
+    <h5>&copy; 2024 Travis Ruopp </h5>
+</footer>
+</html>
